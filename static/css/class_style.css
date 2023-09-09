@@ -1,0 +1,23 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-radius: 5%;
+  padding: 50px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+#attendance-summary {
+  margin-bottom: 20px;
+}
+
+#attendance-chart-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+body{
+  background-color: #d4d4d4;
+  margin: 20px;
+}

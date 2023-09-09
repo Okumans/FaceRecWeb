@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/subclass_style.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <ul id="navbar">
+    <li><a href="/" style="font-size: 52px; font-weight:bold;">Home</a></li>
+    <li><button onclick="window.history.back()">back</a></li>
+    <li><a href="#news">Leaderboard</a></li>
+
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Sorted by Class</a>
+      <div class="dropdown-content">
+        <a href="/classes">class</a>
+        <a href="/students_id/0">student number</a>
+        <a href="/names/0">name</a>
+        <a href="/nicknames/0">nickname</a>
+        <a href="/idd/0">IDD</a>
+        <a href="/latest/0">latest checked</a>
+        <a href="#">unknown</a>
+      </div>
+    </li>
+  </ul>
+
+  <div class="container" id="container">
+
+    <h1>Attendance Dashboard</h1>
+    <h4 style="color:rgba(255, 255, 255, 0.7);" id="grade">Grade XX</h3>
+      <div id="attendance-chart-container">
+        <canvas id="attendance-chart"></canvas>
+      </div>
+      <div id="attendance-summary" style="color:rgba(255, 255, 255, 0.4);" >
+
+      </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.0/dist/chart.min.js"></script>
+  <script src="{{url_for('static', filename='script/class_script.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Data table</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel='stylesheet' type='text/css'>
+
+</head>
+
+<body>
+
+  <ul>
+    <li><a href="/" style="font-size: 52px; font-weight:bold;">Home</a></li>
+    <li><a href="/leaderboard/0">Leaderboard</a></li>
+    {% if page_number > 0 %}
+    <li><a href="{{page_number-1}}">previous</a></li>
+    {% endif %}
+    <li><a href="{{page_number+1}}">next</a></li>
+
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Sorted by {{sorted_by}}</a>
+      <div class="dropdown-content">
+        <a href="/classes">class</a>
+        <a href="/students_id/0">student number</a>
+        <a href="/names/0">name</a>
+        <a href="/nicknames/0">nickname</a>
+        <a href="/idd/0">IDD</a>
+        <a href="/latest/0">latest checked</a>
+        <a href="#">unknown</a>
+      </div>
+    </li>
+  </ul>
+
+  <div class="container" style="padding-top: 100px;" id="container">
+    {% for key in data %}
+    <a href="/students/{{key}}">
+      <div class="box">
+        <div class="image_box">
+          <img src="{{image_links[key]}}">
+        </div>
+        <div class="content_box">
+          <p class="text_info">{{data[key]["realname"]}} {{data[key]["surname"]}}</p>
+          <p class="text_info small">Time: {{data[key]["last_checked"]}}</p>
+        </div>
+
+        {% if check_state[key] == "CHECKED" %}
+        <div class="status"></div>
+        {% elif check_state[key] == "CHECKED_LATE" %}
+        <div class="status" style="background-color:#e8bc56; box-shadow: 0px 0px 22px 0px #e8bc56;"></div>
+        {%elif check_state[key] == "NOT_CHECKED" %}
+        <div class="status" style="background-color:#e85676; box-shadow: 0px 0px 22px 0px #e85676;"></div>
+        {%else%}
+        <div class="status" style="opacity: 0%;"></div>
+        {% endif %}
+
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <script>
+    const CHECKED = "CHECKED"
+    const CHECKED_LATE = "CHECKED_LATE"
+    const NOT_CHECKED = "NOT_CHECKED"
+
+    const RED = "#e85676"
+    const GREEN = "rgba(45,255,196)"
+    const YELLOW = "#e8bc56"
+
+    function update_status() {
+      const idds = Object.keys({{ data| safe }})
+      const elements = document.getElementById("container").getElementsByTagName("a")
+
+      for (var index = 0; index < elements.length; index++) {
+        const element = elements[index]
+        const idd = idds[index]
+        
+        fetch('/students-get-data/' + idd)
+          .then(response => response.json())
+          .then(data => {
+            status = data.status
+            const statusTag = element.getElementsByClassName("status")[0]
+
+            if (status == CHECKED) {
+              statusTag.style.backgroundColor = GREEN
+              statusTag.style.boxShadow = "box-shadow: 0px 0px 22px 0px " + GREEN
+            }
+            else if (status == CHECKED_LATE) {
+              statusTag.style.backgroundColor = YELLOW
+              statusTag.style.boxShadow = "box-shadow: 0px 0px 22px 0px " + YELLOW
+            }
+            else if (status == NOT_CHECKED) {
+              statusTag.style.backgroundColor = RED
+              statusTag.style.boxShadow = "box-shadow: 0px 0px 22px 0px " + RED
+            }
+
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      }
+    }
+
+    setInterval(update_status, 10000)
+  </script>
+</body>
+
+</html>

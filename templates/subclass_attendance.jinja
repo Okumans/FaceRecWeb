@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance Web App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/subclass_style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Kanit" rel='stylesheet' type='text/css'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+
+</head>
+
+<body>
+    <ul id="navbar">
+        <li><a href="/" style="font-size: 52px; font-weight:bold;">Home</a></li>
+        <li><button onclick="window.history.back()">back</a></li>
+        <li><a href="#news">Leaderboard</a></li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Sorted by Class</a>
+            <div class="dropdown-content">
+                <a href="/classes">class</a>
+                <a href="/students_id/0">student number</a>
+                <a href="/names/0">name</a>
+                <a href="/nicknames/0">nickname</a>
+                <a href="/idd/0">IDD</a>
+                <a href="/latest/0">latest checked</a>
+                <a href="#">unknown</a>
+            </div>
+        </li>
+    </ul>
+
+    <div class="container", id="container">
+        <div id="attendance-summary">
+        <h3 id="grade">Grade XX/XX</h2>
+            <h1>Attendance Summary</h2>
+                <p id="attendance-count"></p>
+                <canvas id="attendance-chart"></canvas>
+        </div>
+        <div class="table-container">
+            <table id="attendance-table" class="table">
+                <thead>
+                    <tr>
+                        <th>No.</th>
+                        <th>Name</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Attendance data will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+        <button class="doc" onclick="download()">document</button>
+    </div>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="{{url_for('static', filename='script/subclass_script.js')}}"></script>
+</body>
+
+</html>

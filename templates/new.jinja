@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>add new identity</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/new_style.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel='stylesheet' type='text/css'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body class="grid-container">
+  <h1 class="title">Add new identity
+          <p id="frame-count" class="frame-count">0/xx</p></h1>
+
+  <div class="container">
+
+
+    <div id="camera" class="camera">
+      <div id="camera-container">
+        <div id="preview">
+          <video autoplay muted width="512" height="384" class="camera preview" id="video"></video>
+        </div>
+        <div class="camera-buttons" id="camera-buttons">
+          <div>
+          </div>
+          <button id="record" class="record-button">Record</button>
+          <button id="stop" class="stop-button">Stop</button>
+        </div>
+      </div>
+
+      <form class="custom-file-input" id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+        <input id="upload-input" type="file" name="file" accept="video/*">
+      </form>
+    </div>
+
+    <div id="input" class="input-info">
+
+      <div id="image-form">
+        <form class="custom-file-input2" id="upload-image-form" action="/upload" method="POST"
+          enctype="multipart/form-data">
+          <input id="upload-image" type="file" name="file" accept="image/*">
+        </form>
+        <img id="preview-profile" class="preview-image">
+      </div>
+      <div>
+        <label>Name</label>
+        <input id="name" type="text" required><br>
+      </div>
+      <div>
+        <label>Nickname</label>
+        <input id="nickname" type="text" required><br>
+      </div>
+      <div>
+        <label>Student number</label>
+        <input id="student-id" type="number" required><br>
+      </div>
+      <div>
+        <label>Class</label>
+        <input id="student-class" type="text" pattern="\d+\/\d+" placeholder="Enter grade/classnumber" required><br>
+      </div>
+      <div>
+        <label>Class number</label>
+        <input id="class-number" type="number" required>
+      </div>
+
+      <button type="submit" id="submit-button" class="submit-button" disabled
+        onclick="return validate()">Submit</button>
+    </div>
+  </div>
+  <div id="images-grid" class="images-grid"></div>
+
+  <script defer src="{{url_for('static', filename='script/face-api.min.js')}}"></script>
+  <script defer src="{{url_for('static', filename='script/new_script.js')}}"></script>
+</body>
+
+</html>

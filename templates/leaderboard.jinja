@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Data table</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/leaderboard.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Kanit" rel='stylesheet' type='text/css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit&family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <ul>
+    <li><a href="/" style="font-size: 52px; font-weight:bold;">Home</a></li>
+    <li><a href="/leaderboard/0">Leaderboard</a></li>
+    {% if page_number > 0 %}
+    <li><a href="{{page_number-1}}">previous</a></li>
+    {% endif %}
+    <li><a href="{{page_number+1}}">next</a></li>
+
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn"></a>
+      <div class="dropdown-content">
+        <a href="/classes">class</a>
+        <a href="/students_id/0">student number</a>
+        <a href="/names/0">name</a>
+        <a href="/nicknames/0">nickname</a>
+        <a href="/idd/0">IDD</a>
+        <a href="/latest/0">latest checked</a>
+        <a href="#">unknown</a>
+      </div>
+    </li>
+  </ul>
+
+  <div class="container" style="padding-top: 100px;" id="container">
+    {% for key in data %}
+    <a href="/students/{{key}}" style="text-decoration: none;">
+      <div class="box">
+        <div class="image_box">
+          <img src="{{image_links[key]}}">
+        </div>
+        <div class="content_box">
+          <p class="text_info">{{data[key]["student"]["realname"]}} {{data[key]["student"]["surname"]}}</p>
+          <p class="text_info small">Points: {{data[key]["points"]["points"]}}</p>
+        </div>
+        <div class="status">
+          <p>{{rank[key]}}</p>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+</body>
+
+</html>

@@ -1,0 +1,176 @@
+:root {
+    --state-color: rgba(2, 39, 29, 0.055);
+    --state-color-glow: rgba(45, 255, 195, 0);
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    margin-top: 20px;
+    width: fit-content;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 70px;
+    background-color: #183b36;
+    border-radius: 250px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: .5s;
+}
+
+.chart {
+    margin-top: 20px;
+    width: 100%; /* Set the desired width */
+    height: 500px; /* Adjust the height as needed */
+    overflow: auto;
+  }
+
+.container:hover {
+    transition: .2s;
+    box-shadow: 0 8px 90px 0 var(--state-color-glow),
+        0px 0px 22px 0px var(--state-color-glow), inset 0 0 20px 4px #000000ad;
+
+}
+
+.image_box {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    position: relative;
+    text-align: center;
+}
+
+.image_box::after {
+    box-shadow: 0px 0px 22px 0px var(--state-color-glow), inset 0 0 20px 4px #000000ad;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 20px;
+    height: 160px;
+    border: solid var(--state-color) 10px;
+    width: 160px;
+    border-radius: 100%;
+    transition: 1s;
+}
+
+.image_box img {
+    height: 160px;
+    width: 160px;
+    margin-right: 20px;
+    object-fit: cover;
+    border-radius: 100%;
+    border: solid var(--state-color) 10px;
+    transition: 1s;
+}
+
+.text-info div {
+    padding-left: 15px;
+    font-family: Kanit;
+    text-align: left;
+    background-color: #66999265;
+}
+
+.text-info p {
+    font-size: 18px;
+    line-height: .9;
+    font-weight: 550;
+    color: #ffffffab;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    background-color: #0d1f1c;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+li {
+    float: left;
+}
+
+li a,
+.dropbtn {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 16px;
+    margin-left: 15px;
+    text-decoration: none;
+    padding: 5px;
+    color: #94b3af89;
+    font-size: 30px;
+    font-weight: lighter;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+li a:hover,
+.dropdown:hover .dropbtn {
+    transition: .5s;
+    color: #ffffff;
+    text-shadow: 0px 0px 17px #FFFFFF;
+}
+
+ul {
+    width: 10%;
+    margin: 0;
+    position: relative;
+    padding: 0;
+    top: 0px;
+    left: 0px;
+    background-color: #050c0b;
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+button {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 16px;
+    margin-left: 15px;
+    text-decoration: none;
+    padding: 5px;
+    color: #94b3af89;
+    font-size: 30px;
+    font-weight: lighter;
+    border-radius: 10px;
+    transition: .5s;
+    width: 10%;
+    margin: 0;
+    position: relative;
+    padding: 0;
+    top: 0px;
+    left: 0px;
+    background-color: #050c0b;
+    font-family: Kanit;
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border: none;
+}
+
+button:hover {
+    transition: .5s;
+    color: #ffffff;
+    text-shadow: 0px 0px 17px #FFFFFF;
+}
+
+#arrival-times-chart{
+    border-radius: 10px;
+}
